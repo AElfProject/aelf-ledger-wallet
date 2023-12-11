@@ -26,7 +26,6 @@ const ErrorPage = ({
             <Footer/>
           </Layout>
         </Flex>
-        <div className={styles.rightContainer}/>
       </Flex>
             
     </>

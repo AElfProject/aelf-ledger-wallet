@@ -28,7 +28,6 @@ const HomePage = ({
           <Footer/>
         </Layout>
       </Flex>
-      <div className={styles.rightContainer}/>
     </Flex>
   )
 };

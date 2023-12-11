@@ -11,15 +11,8 @@
 }
 
 .headerContainer {
-  width: 425px;
   white-space: nowrap;
   margin: 0;
-}
-
-.rightContainer {
-  flex: 1;
-  background-image: url("../../../assets/icon/connect-bg.svg");
-  z-index: 1;
 }
 
 .stickyHeader {
