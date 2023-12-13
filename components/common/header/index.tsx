@@ -24,7 +24,7 @@ const Header = ({
       <Layout.Header className={clsx(styles.header, externalClasses.header, network == NetworkStateEnum.testnet ? styles.testnetworkHeader : styles.mainnetworkHeader)}>
         <Row className={styles.headerLayout} align="middle">
           <Col span={12} className={styles.verticalCenter}>
-            <Image src={network == NetworkStateEnum.testnet ? logoTestnetImage : logoMainnetImage} alt="Aelf logo" height={36}/>
+            <Image src={network == NetworkStateEnum.testnet ? logoTestnetImage : logoMainnetImage} alt="AELF logo" height={36}/>
             <Typography.Text className={clsx(styles.title, network == NetworkStateEnum.mainnet && styles.mainnetworkHeaderTitle)}>Ledger Wallet</Typography.Text>
           </Col>
         </Row>

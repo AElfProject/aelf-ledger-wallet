@@ -266,7 +266,7 @@ function SendTransaction({
                   stringMode
                   parser={(value) => value.replace(/[\s$,]/g, "")}
                   onChange={setAmountValue}
-                  onStep={(value, stepObj: any) => {
+                  onStep={(value, stepObj) => {
                     setAmountValue(value);
                     form.setFieldsValue({ amount: value });
                     setFormData({...formData, amount: value});
