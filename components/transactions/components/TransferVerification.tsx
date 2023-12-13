@@ -72,7 +72,7 @@ const TransferVerification = ({
         if (isEmptyObject(TransactionFee)) {
           setFees('-');
         } else {
-          const calculatedFees = Number(new BigNumber(TransactionFee.ELF).dividedBy(10 ** 8).toNumber());
+          const calculatedFees = new BigNumber(TransactionFee.ELF).dividedBy(10 ** 8).toNumber();
           setFees(`${calculatedFees} ELF`);
         }
         setInsufficient(false);

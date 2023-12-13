@@ -1,4 +1,4 @@
-import { differenceInMilliseconds } from "date-fns";
+import { intervalToDuration, formatDuration } from "date-fns";
 import {ChainStateEnum} from "@/state";
 
 export const CHAIN_OPTIONS: Record<ChainStateEnum, string> = {
@@ -7,19 +7,14 @@ export const CHAIN_OPTIONS: Record<ChainStateEnum, string> = {
   [ChainStateEnum.tDVW]: 'SideChain '.concat(ChainStateEnum.tDVW),
 }
 
-export const getLastTwoUnits = (date) => {
-  const now = new Date();
-  const distance = differenceInMilliseconds(now, date);
+export const getLastTwoUnits = (date: Date) => {
+  const duration = intervalToDuration({ start: date, end: new Date() });
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-
-  if (days > 0) {
-    return `${days} day${days > 1 ? 's' : ''} ${hours} hr${hours > 1 ? 's' : ''} ago`;
-  } else if (hours > 0) {
-    return `${hours} hr${hours > 1 ? 's' : ''} ${minutes} min${minutes > 1 ? 's' : ''} ago`;
+  if (duration.days > 0) {
+    return formatDuration(duration, { format: ['days', 'hours'] }).replace("hour", "hr") + " ago";
+  } else if (duration.hours > 0) {
+    return formatDuration(duration, { format: ['hours', 'minutes'] }).replace("hour", "hr").replace("minute", "min") + " ago";
   } else {
-    return `${minutes} min${minutes > 1 ? 's' : ''} ago`;
+    return formatDuration(duration, { format: ['minutes', 'seconds'] }).replace("minute", "min").replace("second", "sec") + " ago";
   }
 }
