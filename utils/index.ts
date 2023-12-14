@@ -10,3 +10,23 @@ export const replaceAll = (str: string, find: string, replace: string) => {
   const regex = new RegExp(find, 'g');
   return str.replace(regex, replace);
 }
+
+export const formatNumber = (value: string) => {
+  const [integerPart, decimalPart = ''] = value.split('.');
+
+  if (decimalPart.replace(/0/g, '').length > 0) {
+    return value;
+  } else {
+    return integerPart;
+  }
+}
+
+export const isEmptyObject = (obj: object) => {
+  return Object.keys(obj).length === 0;
+}
+
+export const roundNumber = (num: string) => {
+  const trimmed = parseFloat(num).toString();
+  const formatted = trimmed.replace(/(\.\d*?[1-9])0+$/g, '$1');
+  return formatted;
+}

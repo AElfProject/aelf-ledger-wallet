@@ -6,7 +6,6 @@ import {
   NetworkStateEnum,
   networkState,
 } from "@/state";
-import NetworkSelection from "@/components/overview/components/NetworkSelection";
 import logoTestnetImage from '@/assets/icon/logo-testnet.svg';
 import logoMainnetImage from '@/assets/icon/logo-mainnet.svg';
 import styles from "./style.module.css";
@@ -16,7 +15,6 @@ interface HeaderProps {
   externalClasses?: Partial<{container: string, header: string}>;
 }
 const Header = ({
-  showNetwork,
   externalClasses,
 }: HeaderProps) => {
   const network = useRecoilValue(networkState);
@@ -26,12 +24,9 @@ const Header = ({
       <Layout.Header className={clsx(styles.header, externalClasses.header, network == NetworkStateEnum.testnet ? styles.testnetworkHeader : styles.mainnetworkHeader)}>
         <Row className={styles.headerLayout} align="middle">
           <Col span={12} className={styles.verticalCenter}>
-            <Image src={network == NetworkStateEnum.testnet ? logoTestnetImage : logoMainnetImage} alt="Aelf logo" height={36}/>
+            <Image src={network == NetworkStateEnum.testnet ? logoTestnetImage : logoMainnetImage} alt="AELF logo" height={36}/>
             <Typography.Text className={clsx(styles.title, network == NetworkStateEnum.mainnet && styles.mainnetworkHeaderTitle)}>Ledger Wallet</Typography.Text>
           </Col>
-          {showNetwork && <Col span={12}>
-            <NetworkSelection />
-          </Col>}
         </Row>
       </Layout.Header>
     </div>

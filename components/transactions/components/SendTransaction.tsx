@@ -153,8 +153,10 @@ function SendTransaction({
       const res2 = await signAndSendTransaction(rawTx);
 
       setTransactionId(res2.TransactionId);
-
       if (res2.TransactionId) {
+        setFormData({to: '', amount: '', memo: ''});
+        form.setFieldsValue({to: '', amount: '', memo: ''});
+        setAmountValue(null);
         setShowSuccessModal(true);
       }
     } catch (err) {
@@ -211,7 +213,10 @@ function SendTransaction({
                 {
                   // eslint-disable-next-line no-unused-vars
                   async validator(_, value) {
-                    validateAddress(value, chain);
+                    const formattedAddress = validateAddress(value, chain);
+                    if (formattedAddress === address) {
+                      throw new Error("The sender and recipient address are identical");
+                    }
                     return "";
                   },
                 },
@@ -261,6 +266,14 @@ function SendTransaction({
                   stringMode
                   parser={(value) => value.replace(/[\s$,]/g, "")}
                   onChange={setAmountValue}
+                  onStep={(value, stepObj) => {
+                    setAmountValue(value);
+                    form.setFieldsValue({ amount: value });
+                    setFormData({...formData, amount: value});
+                    if (stepObj.type === 'up' || stepObj.type === 'down') {
+                      form.validateFields(['amount']);
+                    }
+                  }}
                 />
                 {amountValue !== null && (
                   <CloseCircleFilled className={styles.clearIcon} onClick={() => {
@@ -308,6 +321,7 @@ function SendTransaction({
         onCancel={onClose}
         open={showSuccessModal} 
         centered width={442} 
+        maskClosable={false}
         footer={() => <Button type="primary" onClick={onClose} block>Close</Button>}>
         <Result
           status="success"
@@ -319,6 +333,7 @@ function SendTransaction({
         onCancel={onClose}
         open={showFailureModal} 
         centered width={442} 
+        maskClosable={false}
         footer={() => <Button type="primary" onClick={onClose} block>Close</Button>}>
         <Result
           status="error"
