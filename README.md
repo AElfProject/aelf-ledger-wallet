@@ -1,6 +1,6 @@
-# AElf Ledger Wallet
+# AELF Ledger Wallet
 
-This is a AElf Ledger Wallet for Ledger Device.
+This is a AELF Ledger Wallet for Ledger Device.
 
 ## Set up
 
@@ -29,4 +29,4 @@ You may also see any lint errors in the console.
 
 - [Ledger Web USB/HID walkthrough](https://developers.ledger.com/docs/transport/web-hid-usb/)
 - [Ledger Web Bluetooth walkthrough](https://developers.ledger.com/docs/transport/web-bluetooth/)
-- [How to use your Ledger Device with the AElf Ledger Wallet](https://docs.google.com/document/d/1xxl_DRUNoqfWF__nO_rhUBPDA6-yNf0Y3nfTie0OQwA/edit?usp=sharing)
+- [How to use your Ledger Device with the AELF Ledger Wallet](https://docs.google.com/document/d/1xxl_DRUNoqfWF__nO_rhUBPDA6-yNf0Y3nfTie0OQwA/edit?usp=sharing)
